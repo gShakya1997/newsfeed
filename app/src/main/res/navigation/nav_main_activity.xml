@@ -35,5 +35,22 @@
         <action
             android:id="@+id/action_getStartedFragment_to_setPasswordFragment"
             app:destination="@id/setPasswordFragment" />
+        <action
+            android:id="@+id/action_getStartedFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.gunjan.newsfeed.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardActivity"
+            app:destination="@id/dashboardActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.gunjan.newsfeed.view.DashboardActivity"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
 </navigation>

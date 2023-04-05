@@ -20,9 +20,13 @@ class RegistrationFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+
         binding.btnNext.setOnClickListener {
             NavigationRedirection.navigateToFragment(it, R.id.action_register_to_set_password)
         }
+
+        binding.btnBack.setOnClickListener { NavigationRedirection.navigateBack(it) }
+
         return binding.root
     }
 

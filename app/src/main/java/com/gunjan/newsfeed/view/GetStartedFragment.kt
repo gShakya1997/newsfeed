@@ -33,6 +33,12 @@ class GetStartedFragment : Fragment() {
             )
         }
 
+        binding.btnGoToLogin.setOnClickListener {
+            NavigationRedirection.navigateWithNavController(
+                navController,
+                R.id.action_getStartedFragment_to_loginFragment
+            )
+        }
         return binding.root
     }
 

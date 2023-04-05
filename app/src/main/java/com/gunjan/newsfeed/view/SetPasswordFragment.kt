@@ -29,6 +29,8 @@ class SetPasswordFragment : Fragment() {
             )
         }
 
+        binding.btnBack.setOnClickListener { NavigationRedirection.navigateBack(it) }
+
         return binding.root
     }
 
