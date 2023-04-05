@@ -28,4 +28,5 @@
     <string name="get_started_description">Get your latest articles</string>
     <string name="login">Login</string>
     <string name="login_description">Please use valid email and password</string>
+    <string name="favorite">Favorite</string>
 </resources>
