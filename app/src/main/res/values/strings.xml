@@ -5,11 +5,26 @@
     <string name="server_error">Server error</string>
     <string name="try_again_later">Please try again, later</string>
     <string name="unknown_error_title">Unknown error</string>
-    <string name="unknown_error">An unknown error occured</string>
+    <string name="unknown_error">An unknown error occurred</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="try_again">Please try again</string>
     <string name="network_error">Network error</string>
     <string name="check_connectivity">Please check your connection and try again</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="registration">User Registration</string>
+    <string name="registration_description">Please fill up the form</string>
+    <string name="full_name">Full name</string>
+    <string name="phone">Phone</string>
+    <string name="next">Next</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="done">Done</string>
+    <string name="set_your_password">Set your password</string>
+    <string name="set_your_password_description">Please set your password. Strong password is recommended</string>
+    <string name="register">Register</string>
+    <string name="get_started">Get Started</string>
+    <string name="get_started_description">Get your latest articles</string>
+    <string name="login">Login</string>
 </resources>

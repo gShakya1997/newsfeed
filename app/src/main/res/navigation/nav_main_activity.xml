@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_main_activity.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_activity.xml"
+    app:startDestination="@id/getStartedFragment">
 
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.gunjan.newsfeed.view.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_register_to_set_password"
+            app:destination="@id/setPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setPasswordFragment"
+        android:name="com.gunjan.newsfeed.view.SetPasswordFragment"
+        android:label="fragment_set_password"
+        tools:layout="@layout/fragment_set_password">
+        <action
+            android:id="@+id/action_setPasswordFragment_to_getStartedFragment"
+            app:destination="@id/getStartedFragment"
+            app:popUpTo="@id/getStartedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/getStartedFragment"
+        android:name="com.gunjan.newsfeed.view.GetStartedFragment"
+        android:label="fragment_get_started"
+        tools:layout="@layout/fragment_get_started">
+        <action
+            android:id="@+id/action_getStartedFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_getStartedFragment_to_setPasswordFragment"
+            app:destination="@id/setPasswordFragment" />
+    </fragment>
 </navigation>
