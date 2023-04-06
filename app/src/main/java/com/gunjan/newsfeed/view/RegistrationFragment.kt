@@ -30,6 +30,11 @@ class RegistrationFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btnNext.setOnClickListener {
             if (isFullNameValid() and isPhoneValid() and isAddressValid() and isEmailValid()) {
@@ -42,22 +47,16 @@ class RegistrationFragment : Fragment() {
                 when (it) {
                     is Event.Loading -> {}
                     is Event.Success -> {
-                        if (it.data == true) {
-                            binding.apply {
-                                val actionExploreToProductList =
-                                    RegistrationFragmentDirections.actionRegisterToSetPassword(
-                                        textInputEditTextFullName.text.toString(),
-                                        textInputEditTextPhone.text.toString(),
-                                        textInputEditTextAddress.text.toString(),
-                                        textInputEditTextEmail.text.toString()
-                                    )
-                                root.findNavController()
-                                    .navigate(actionExploreToProductList)
-                            }
-                        } else {
-                            binding.textInputEditTextEmail.error =
-                                UiText.StringResource(R.string.email_already_used)
-                                    .asString(requireContext())
+                        binding.apply {
+                            val actionExploreToProductList =
+                                RegistrationFragmentDirections.actionRegisterToSetPassword(
+                                    textInputEditTextFullName.text.toString(),
+                                    textInputEditTextPhone.text.toString(),
+                                    textInputEditTextAddress.text.toString(),
+                                    textInputEditTextEmail.text.toString()
+                                )
+                            root.findNavController()
+                                .navigate(actionExploreToProductList)
                         }
                     }
                     is Event.Failure -> {
@@ -71,8 +70,6 @@ class RegistrationFragment : Fragment() {
         }
 
         binding.btnBack.setOnClickListener { NavigationRedirection.navigateBack(it) }
-
-        return binding.root
     }
 
     private fun isFullNameValid(): Boolean {

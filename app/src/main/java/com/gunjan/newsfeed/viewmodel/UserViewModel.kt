@@ -27,8 +27,8 @@ class UserViewModel @Inject constructor(
     private val _registerUser = MutableSharedFlow<Event>()
     val registerUser: SharedFlow<Event> = _registerUser
 
-    private val _login = MutableLiveData<Resource<Users>>()
-    val login: LiveData<Resource<Users>> = _login
+    private val _login = MutableSharedFlow<Event>()
+    val login: SharedFlow<Event> = _login
 
     private val _getUserDetail = MutableLiveData<Resource<Users>>()
     val getUserDetail: LiveData<Resource<Users>> = _getUserDetail
@@ -43,7 +43,7 @@ class UserViewModel @Inject constructor(
                     else _checkUserEmail.emit(
                         Event.Failure(
                             null,
-                            UiText.StringResource(R.string.mismatch_password)
+                            UiText.StringResource(R.string.email_already_used)
                         )
                     )
                 }
@@ -75,9 +75,9 @@ class UserViewModel @Inject constructor(
     fun login(email: String, password: String) {
         viewModelScope.launch(dispatcherProvider.io) {
             when (val loginResponse = usersRepository.login(email, password)) {
-                is Resource.Success -> _login.postValue(Resource.Success(loginResponse.data!!))
-                is Resource.Error -> _login.postValue(
-                    Resource.Error(
+                is Resource.Success -> _login.emit(Event.Success(loginResponse.data!!))
+                is Resource.Error -> _login.emit(
+                    Event.Failure(
                         loginResponse.errorTitle!!,
                         loginResponse.message!!
                     )
