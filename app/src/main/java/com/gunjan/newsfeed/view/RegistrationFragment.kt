@@ -53,12 +53,16 @@ class RegistrationFragment : Fragment() {
                                 root.findNavController().navigate(actionExploreToProductList)
                             }
                         } else {
-                            Toast.makeText(requireContext(), "Email already in use", Toast.LENGTH_SHORT).show()
+                            binding.textInputEditTextEmail.error =
+                                UiText.StringResource(R.string.email_already_used)
+                                    .asString(requireContext())
                         }
                     }
                     is Resource.Error -> {
-                        Toast.makeText(requireContext(),
-                            it.message!!.asString(requireContext()), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            it.message!!.asString(requireContext()), Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }

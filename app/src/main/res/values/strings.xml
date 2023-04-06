@@ -35,4 +35,5 @@
     <string name="mismatch_password">Mismatch password</string>
     <string name="unexpected_error">Unexpected error</string>
     <string name="please_try_again">Please try again later</string>
+    <string name="email_already_used">Email already in use</string>
 </resources>

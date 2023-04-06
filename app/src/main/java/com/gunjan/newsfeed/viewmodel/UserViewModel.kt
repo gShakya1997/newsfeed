@@ -32,6 +32,21 @@ class UserViewModel @Inject constructor(
     private val _getUserDetail = MutableLiveData<Resource<Users>>()
     val getUserDetail: LiveData<Resource<Users>> = _getUserDetail
 
+    fun registerUser(user: Users) {
+        viewModelScope.launch(dispatcherProvider.io) {
+            when (val registerResponse = usersRepository.registerUser(user)) {
+                is Resource.Loading -> _registerUser.postValue(Resource.Loading())
+                is Resource.Success -> _registerUser.postValue(Resource.Success(registerResponse.data!!))
+                is Resource.Error -> _registerUser.postValue(
+                    Resource.Error(
+                        UiText.StringResource(R.string.unexpected_error),
+                        UiText.StringResource(R.string.please_try_again)
+                    )
+                )
+            }
+        }
+    }
+
     fun checkExistUsers(email: String) {
         viewModelScope.launch(dispatcherProvider.io) {
             when (val checkExistUsers = usersRepository.checkUserEmail(email)) {
