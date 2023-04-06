@@ -29,9 +29,6 @@ object NavigationRedirection {
      */
     fun navigateToFragment(v: View, action: Int) {
         findNavController(v).navigate(action)
-//        if (Int::class.java == action.javaClass) {
-//            findNavController(v!!).navigate((action as Int))
-//        } else findNavController(v!!).navigate((action as NavDirections))
     }
 
     /**

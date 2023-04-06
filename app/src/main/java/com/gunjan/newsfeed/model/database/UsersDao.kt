@@ -15,7 +15,4 @@ interface UsersDao {
 
     @Query("SELECT * FROM Users WHERE email LIKE :email AND password LIKE :password")
     suspend fun login(email: String, password: String): Users
-
-    @Query("SELECT * from Users where email LIKE :email")
-    suspend fun getUserDetail(email: String): Users
 }

@@ -2,7 +2,6 @@ package com.gunjan.newsfeed.core.utils
 
 import android.content.Context
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
 
 sealed class UiText {
     data class DynamicString(val value: String) : UiText()

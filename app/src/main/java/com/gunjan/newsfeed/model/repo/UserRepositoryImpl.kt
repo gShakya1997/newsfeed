@@ -47,20 +47,8 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun login(email: String, password: String): Resource<Users> =
         when (val loginResponse =
-            safeApiCall(dispatcherProvider) { usersDao.checkUserEmail(email) }) {
+            safeApiCall(dispatcherProvider) { usersDao.login(email, password) }) {
             is Resource.Success -> Resource.Success(loginResponse.data!!)
-            is Resource.Error -> {
-                Resource.Error(
-                    UiText.StringResource(R.string.unexpected_error),
-                    UiText.StringResource(R.string.please_try_again)
-                )
-            }
-        }
-
-    override suspend fun getUserDetail(email: String): Resource<Users> =
-        when (val getUserDetailResponse =
-            safeApiCall(dispatcherProvider) { usersDao.checkUserEmail(email) }) {
-            is Resource.Success -> Resource.Success(getUserDetailResponse.data!!)
             is Resource.Error -> {
                 Resource.Error(
                     UiText.StringResource(R.string.unexpected_error),
