@@ -42,7 +42,7 @@ class NewsListFragment : Fragment() {
                 when (it) {
                     is CategoryEvent.Loading -> {}
                     is CategoryEvent.Success -> {
-                        val adapter = NewsAdapter(it.data)
+                        val adapter = NewsAdapter(requireContext(), it.data)
                         binding.recyclerViewNews.layoutManager =
                             LinearLayoutManager(requireContext())
                         binding.recyclerViewNews.adapter = adapter

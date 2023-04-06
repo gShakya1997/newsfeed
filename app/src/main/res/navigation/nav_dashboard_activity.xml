@@ -9,5 +9,18 @@
         android:id="@+id/newsListFragment"
         android:name="com.gunjan.newsfeed.view.NewsListFragment"
         android:label="fragment_news_list"
-        tools:layout="@layout/fragment_news_list" />
+        tools:layout="@layout/fragment_news_list">
+        <action
+            android:id="@+id/action_newsListFragment_to_articleListFragment"
+            app:destination="@id/articleListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.gunjan.newsfeed.view.ArticleListFragment"
+        android:label="fragment_article_list"
+        tools:layout="@layout/fragment_article_list">
+        <argument
+            android:name="newsArticle"
+            app:argType="string" />
+    </fragment>
 </navigation>
