@@ -3,6 +3,7 @@ package com.gunjan.newsfeed.di
 import android.app.Application
 import androidx.room.Room
 import com.gunjan.newsfeed.core.Constant
+import com.gunjan.newsfeed.core.utils.DispatcherProvider
 import com.gunjan.newsfeed.model.database.AppDatabase
 import com.gunjan.newsfeed.model.database.UsersDao
 import com.gunjan.newsfeed.model.repo.UserRepositoryImpl
@@ -20,11 +21,14 @@ object UserModule {
         application,
         AppDatabase::class.java,
         Constant.DB_NAME
-    ).allowMainThreadQueries().build()
+    ).build()
 
     @Provides
     fun provideUsersDao(appDatabase: AppDatabase): UsersDao = appDatabase.userDao()
 
     @Provides
-    fun provideUsersRepository(usersDao: UsersDao): UsersRepository = UserRepositoryImpl(usersDao)
+    fun provideUsersRepository(
+        usersDao: UsersDao,
+        dispatcherProvider: DispatcherProvider
+    ): UsersRepository = UserRepositoryImpl(usersDao, dispatcherProvider)
 }

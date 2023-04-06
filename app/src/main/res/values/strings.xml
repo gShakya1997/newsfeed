@@ -33,4 +33,6 @@
     <string name="invalid_number">Invalid number</string>
     <string name="invalid_email">Invalid email</string>
     <string name="mismatch_password">Mismatch password</string>
+    <string name="unexpected_error">Unexpected error</string>
+    <string name="please_try_again">Please try again later</string>
 </resources>

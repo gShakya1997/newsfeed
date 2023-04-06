@@ -8,14 +8,14 @@ import androidx.room.Query
 @Dao
 interface UsersDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun registerUser(users: Users): Long
+    suspend fun registerUser(users: Users): Long
 
     @Query("SELECT * FROM Users WHERE email LIKE :email")
-    fun checkUserEmail(email: String): Users
+    suspend fun checkUserEmail(email: String): Users?
 
     @Query("SELECT * FROM Users WHERE email LIKE :email AND password LIKE :password")
-    fun login(email: String, password: String): Users
+    suspend fun login(email: String, password: String): Users
 
     @Query("SELECT * from Users where email LIKE :email")
-    fun getUserDetail(email: String): Users
+    suspend fun getUserDetail(email: String): Users
 }

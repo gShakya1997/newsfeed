@@ -6,7 +6,7 @@ import com.gunjan.newsfeed.core.Constant.USER_TABLE
 
 @Entity(tableName = USER_TABLE)
 data class Users(
-    @PrimaryKey val email: String? = "",
+    @PrimaryKey val email: String,
     val fullName: String? = "",
     val phone: String? = "",
     val address: String? = "",
