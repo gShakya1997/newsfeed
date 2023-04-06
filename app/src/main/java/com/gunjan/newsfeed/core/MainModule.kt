@@ -1,8 +1,12 @@
 package com.gunjan.newsfeed.core
 
+import android.app.Application
+import androidx.room.Room
 import com.google.gson.Gson
 import com.gunjan.newsfeed.BuildConfig
 import com.gunjan.newsfeed.core.utils.DispatcherProvider
+import com.gunjan.newsfeed.model.database.AppDatabase
+import com.gunjan.newsfeed.model.database.UsersDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,4 +75,14 @@ object MainModule {
         override val unconfined: CoroutineDispatcher
             get() = Dispatchers.Unconfined
     }
+
+    @Provides
+    fun provideAppDatabase(application: Application) = Room.databaseBuilder(
+        application,
+        AppDatabase::class.java,
+        Constant.DB_NAME
+    ).build()
+
+    @Provides
+    fun provideUsersDao(appDatabase: AppDatabase): UsersDao = appDatabase.userDao()
 }

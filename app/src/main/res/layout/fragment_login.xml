@@ -96,7 +96,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/text_field_background"
-                        android:imeOptions="actionGo"
                         android:lines="1"
                         android:maxLength="255"
                         android:paddingVertical="16dp" />

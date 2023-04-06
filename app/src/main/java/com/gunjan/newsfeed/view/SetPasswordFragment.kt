@@ -11,11 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.gunjan.newsfeed.R
 import com.gunjan.newsfeed.core.utils.NavigationRedirection
-import com.gunjan.newsfeed.core.utils.Resource
 import com.gunjan.newsfeed.core.utils.UiText
 import com.gunjan.newsfeed.databinding.FragmentSetPasswordBinding
 import com.gunjan.newsfeed.model.database.Users
+import com.gunjan.newsfeed.viewmodel.Event
 import com.gunjan.newsfeed.viewmodel.UserViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class SetPasswordFragment : Fragment() {
@@ -29,10 +30,13 @@ class SetPasswordFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentSetPasswordBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding.btnRegister.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnRegisterEw.setOnClickListener {
             if (isPasswordValid() and isConfirmPasswordValid()) {
                 val user = Users(
                     email = args.email,
@@ -46,27 +50,19 @@ class SetPasswordFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            userViewModel.registerUser.observe(viewLifecycleOwner) {
+            userViewModel.registerUser.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {}
-                    is Resource.Success -> {
-                        binding.apply {
-                            Toast.makeText(
-                                requireContext(),
-                                "Registered successfully",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                            NavigationRedirection.navigateToFragment(
-                                binding.root,
-                                R.id.action_setPasswordFragment_to_getStartedFragment
-                            )
-                        }
+                    is Event.Loading -> {}
+                    is Event.Success -> {
+                        NavigationRedirection.navigateToFragment(
+                            view,
+                            R.id.action_setPasswordFragment_to_getStartedFragment
+                        )
                     }
-                    is Resource.Error -> {
+                    is Event.Failure -> {
                         Toast.makeText(
                             requireContext(),
-                            it.message!!.asString(requireContext()), Toast.LENGTH_SHORT
+                            it.message.asString(requireContext()), Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
@@ -74,8 +70,6 @@ class SetPasswordFragment : Fragment() {
         }
 
         binding.btnBack.setOnClickListener { NavigationRedirection.navigateBack(it) }
-
-        return binding.root
     }
 
     private fun isConfirmPasswordValid(): Boolean {

@@ -96,9 +96,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/text_field_background"
-                        android:imeOptions="actionNext"
-                        android:lines="1"
                         android:inputType="text"
+                        android:lines="1"
                         android:maxLength="255"
                         android:paddingVertical="16dp" />
 
@@ -135,10 +134,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/text_field_background"
-                        android:imeOptions="actionNext"
+                        android:inputType="number"
                         android:lines="1"
                         android:maxLength="10"
-                        android:inputType="number"
                         android:paddingVertical="16dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -174,9 +172,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/text_field_background"
-                        android:imeOptions="actionNext"
-                        android:lines="1"
                         android:inputType="text"
+                        android:lines="1"
                         android:maxLength="255"
                         android:paddingVertical="16dp" />
 
@@ -213,10 +210,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/text_field_background"
-                        android:imeOptions="actionGo"
+                        android:inputType="textEmailAddress"
                         android:lines="1"
                         android:maxLength="255"
-                        android:inputType="textEmailAddress"
                         android:paddingVertical="16dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
