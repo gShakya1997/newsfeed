@@ -3,6 +3,7 @@ package com.gunjan.newsfeed.core
 import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.gunjan.newsfeed.BuildConfig
 import com.gunjan.newsfeed.core.utils.DispatcherProvider
 import com.gunjan.newsfeed.model.database.AppDatabase
@@ -54,6 +55,9 @@ object MainModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
     } else OkHttpClient.Builder().build()
+
+    @Provides
+    fun provideGson(): Gson = GsonBuilder().setLenient().create()
 
     @Provides
     fun provideRetrofit(baseUrl: String, okHttpClient: OkHttpClient, gson: Gson): Retrofit =
