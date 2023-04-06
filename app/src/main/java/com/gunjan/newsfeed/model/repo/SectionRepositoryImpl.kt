@@ -5,26 +5,26 @@ import com.gunjan.newsfeed.core.utils.DispatcherProvider
 import com.gunjan.newsfeed.core.utils.Resource
 import com.gunjan.newsfeed.core.utils.SafeApiCall
 import com.gunjan.newsfeed.core.utils.UiText
-import com.gunjan.newsfeed.model.remote.News
-import com.gunjan.newsfeed.model.remote.NewsApi
+import com.gunjan.newsfeed.model.remote.Category
+import com.gunjan.newsfeed.model.remote.SectionApi
 import javax.inject.Inject
 
-class NewsRepositoryImpl @Inject constructor(
-    private val api: NewsApi,
+class SectionRepositoryImpl @Inject constructor(
+    private val api: SectionApi,
     private val dispatcherProvider: DispatcherProvider
-) : NewsRepository, SafeApiCall() {
-    override suspend fun getNews(
+) : SectionRepository, SafeApiCall() {
+    override suspend fun getCategory(
         query: String,
         apiKey: String
-    ): Resource<List<News>> =
+    ): Resource<List<Category>> =
         when (val sectionResponse =
-            safeApiCall(dispatcherProvider) { api.getNews(query, apiKey) }) {
+            safeApiCall(dispatcherProvider) { api.getSection(query, apiKey) }) {
             is Resource.Success -> {
                 val response = sectionResponse.data
                 val result = response!!.body()
                 if (response.isSuccessful && result != null) {
                     if (result.response.status == "ok") {
-                        Resource.Success(result.response.news)
+                        Resource.Success(result.response.categories)
                     } else {
                         Resource.Error(
                             result.response.status.let { UiText.DynamicString(value = it) },

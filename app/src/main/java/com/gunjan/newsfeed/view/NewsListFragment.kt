@@ -11,9 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gunjan.newsfeed.databinding.FragmentNewsListBinding
 import com.gunjan.newsfeed.view.adapter.NewsAdapter
-import com.gunjan.newsfeed.viewmodel.Event
-import com.gunjan.newsfeed.viewmodel.NewsEvent
-import com.gunjan.newsfeed.viewmodel.NewsViewModel
+import com.gunjan.newsfeed.viewmodel.CategoryEvent
+import com.gunjan.newsfeed.viewmodel.SectionViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -23,7 +22,7 @@ class NewsListFragment : Fragment() {
     private var _binding: FragmentNewsListBinding? = null
     private val binding get() = _binding!!
 
-    private val newsViewModel: NewsViewModel by activityViewModels()
+    private val sectionViewModel: SectionViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,19 +35,19 @@ class NewsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        newsViewModel.getNews("news", "67fc99e3-c8e9-4bfd-9ee7-e5620dbfc461")
+        sectionViewModel.getNews("news", "67fc99e3-c8e9-4bfd-9ee7-e5620dbfc461")
 
         viewLifecycleOwner.lifecycleScope.launch {
-            newsViewModel.getNews.collectLatest {
+            sectionViewModel.getCategory.collectLatest {
                 when (it) {
-                    is NewsEvent.Loading -> {}
-                    is NewsEvent.Success -> {
+                    is CategoryEvent.Loading -> {}
+                    is CategoryEvent.Success -> {
                         val adapter = NewsAdapter(it.data)
                         binding.recyclerViewNews.layoutManager =
                             LinearLayoutManager(requireContext())
                         binding.recyclerViewNews.adapter = adapter
                     }
-                    is NewsEvent.Failure -> Log.e(
+                    is CategoryEvent.Failure -> Log.e(
                         TAG,
                         "onViewCreated: ${it.title} and ${it.message}"
                     )
