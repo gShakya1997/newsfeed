@@ -1,12 +1,11 @@
 package com.gunjan.newsfeed.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
-import com.gunjan.newsfeed.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.gunjan.newsfeed.core.utils.NavigationRedirection
 import com.gunjan.newsfeed.databinding.FragmentRegistrationBinding
 
@@ -22,7 +21,14 @@ class RegistrationFragment : Fragment() {
         _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
 
         binding.btnNext.setOnClickListener {
-            NavigationRedirection.navigateToFragment(it, R.id.action_register_to_set_password)
+            val actionExploreToProductList =
+                RegistrationFragmentDirections.actionRegisterToSetPassword(
+                    binding.textInputEditTextFullName.text.toString(),
+                    binding.textInputEditTextPhone.text.toString(),
+                    binding.textInputEditTextAddress.text.toString(),
+                    binding.textInputEditTextEmail.text.toString()
+                )
+            binding.root.findNavController().navigate(actionExploreToProductList)
         }
 
         binding.btnBack.setOnClickListener { NavigationRedirection.navigateBack(it) }
