@@ -29,4 +29,7 @@
     <string name="login">Login</string>
     <string name="login_description">Please use valid email and password</string>
     <string name="favorite">Favorite</string>
+    <string name="required">Required</string>
+    <string name="invalid_number">Invalid number</string>
+    <string name="invalid_email">Invalid email</string>
 </resources>

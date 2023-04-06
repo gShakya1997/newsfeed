@@ -98,6 +98,7 @@
                         android:background="@drawable/text_field_background"
                         android:imeOptions="actionNext"
                         android:lines="1"
+                        android:inputType="text"
                         android:maxLength="255"
                         android:paddingVertical="16dp" />
 
@@ -137,6 +138,7 @@
                         android:imeOptions="actionNext"
                         android:lines="1"
                         android:maxLength="10"
+                        android:inputType="number"
                         android:paddingVertical="16dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -174,7 +176,8 @@
                         android:background="@drawable/text_field_background"
                         android:imeOptions="actionNext"
                         android:lines="1"
-                        android:maxLength="10"
+                        android:inputType="text"
+                        android:maxLength="255"
                         android:paddingVertical="16dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -213,6 +216,7 @@
                         android:imeOptions="actionGo"
                         android:lines="1"
                         android:maxLength="255"
+                        android:inputType="textEmailAddress"
                         android:paddingVertical="16dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
