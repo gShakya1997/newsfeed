@@ -32,7 +32,7 @@ class RegistrationFragment : Fragment() {
                             textInputEditTextAddress.text.toString(),
                             textInputEditTextEmail.text.toString()
                         )
-                    binding.root.findNavController().navigate(actionExploreToProductList)
+                    root.findNavController().navigate(actionExploreToProductList)
                 }
             }
         }
